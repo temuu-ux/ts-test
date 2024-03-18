@@ -1,8 +1,9 @@
 import { SideMenu } from "@/components/SideMenu";
+import { Contents } from "@/components/Contents";
 
 let sideMenus = [
   {
-    title: "string",
+    title: "TypeScript for the New Programmer",
     buttonText: "string",
     contents: [
       {
@@ -23,7 +24,7 @@ let sideMenus = [
     ],
   },
   {
-    title: "string",
+    title: "TypeScript for JavaScript Programmers",
     buttonText: "string",
     contents: [
       {
@@ -44,7 +45,7 @@ let sideMenus = [
     ],
   },
   {
-    title: "string",
+    title: "TypeScript for Java/C# Programmers",
     buttonText: "string",
     contents: [
       {
@@ -68,10 +69,22 @@ let sideMenus = [
 
 export default function Home() {
   return (
-    <main className={`flex min-h-screen flex-col gap-10 items-start p-24 `}>
-      {sideMenus.map((menu) => (
-        <SideMenu menu={menu} />
-      ))}
+    <main
+      className={`flex min-h-screen flex-col gap-10  w-96 border bg-gray-500  p-1`}
+    >
+      <div>
+        {sideMenus.map((menu) => (
+          <div>
+            {" "}
+            <SideMenu menu={menu} />
+            <div>
+              {menu.contents.map((con) => (
+                <Contents  con={con}/>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }
