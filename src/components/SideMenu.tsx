@@ -1,34 +1,33 @@
-type ContentsArray = {
+type ObjType = {
   name: string;
-  price: number;
+  dateOfYear: string;
   isVerified: boolean;
+  tag: string;
+  description: string;
 };
-type MenuType = {
+
+type PropType = {
+  id: number;
   title: string;
   buttonText: string;
-  contents: Array<ContentsArray>;
+  contents: Array<ObjType>;
 };
 
-
-export const SideMenu = ({ menu }: { menu: MenuType }) => {
+export const SideMenu = ({
+  data,
+  state,
+}: {
+  data: PropType;
+  state: (arg0: number) => void;
+}) => {
   return (
-    <div className="dropdown flex ">
-      <button
-        tabIndex={0}
-        role="button"
-        className="bg-gray-300 justify-start border-none text-center p-2 w-80 flex rounded-xl mt-1 "
-      >
-        {menu.title}
-      </button>
-      {/* <div>
-        {menu.contents.map((contents) => (
-          <ul className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li> {contents.name}</li>
-            <li>{contents.price}</li>
-            <li> {contents.isVerified}</li>
-          </ul>
-        ))}
-      </div> */}
+    <div
+      onClick={() => state(data.id)}
+      className={`${
+        data.title === "Financial" ? "border-none" : "border-b"
+      } border-black text-xl hover:text-2xl duration-300 h-10 px-3`}
+    >
+      <p>{data.title}</p>
     </div>
   );
 };
